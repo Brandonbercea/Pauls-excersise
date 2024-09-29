@@ -31,6 +31,11 @@ def serve_static_file(filename):
     cwd = os.getcwd()
     return send_from_directory(cwd, filename)
 
+
+@app.route('/node_modules/<path:filename>', methods=['GET'])
+def serve_node_modules(filename):
+    return send_from_directory('node_modules', filename)
+
 @app.route('/styles/<path:filename>', methods=['GET'])
 def serve_styles(filename):
     return send_from_directory('styles', filename)
@@ -55,5 +60,6 @@ def get_exercise():
 # Run the server
 if __name__ == '__main__':
     app.run(debug=True)
+    print("Server is running on http://127.0.0.1:5000")
     
 
